@@ -6,7 +6,7 @@ const {
   updatePromotion,
   deletePromotion,
   uploadPromotionBanner,
-} = require('../controllers/promotionController');
+} = require('../controllers/PromotionController');
 const { protect, adminOnly } = require('../middleware/authMiddleware');
 const upload = require('../middleware/uploadMiddleware');
 

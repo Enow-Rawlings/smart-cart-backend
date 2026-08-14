@@ -17,8 +17,9 @@ const currencyRoutes = require('./routes/currencyRoutes');
 const featuredRoutes = require('./routes/featuredRoutes');
 const contactRoutes = require('./routes/contactRoutes');
 
-
 connectDB();
+
+const app = express();
 
 const allowedOrigins = [
   'http://localhost:5173',

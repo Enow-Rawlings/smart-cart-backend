@@ -27,10 +27,9 @@ const getRecentlyViewed = async (req, res) => {
     // get the user's most recent view events, most recent first
     const logs = await InteractionLog.find({ userId: req.user._id, type: 'view' })
       .sort({ createdAt: -1 })
-      .limit(Number(limit) * 2) // grab extra in case of duplicate products
+      .limit(Number(limit) * 2) 
       .populate('productId');
 
-    // de-duplicate by product, keeping the most recent view of each
     const seen = new Set();
     const products = [];
 

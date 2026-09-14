@@ -56,4 +56,12 @@ const productSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// Stock notification list — users wanting an alert when restocked
+productSchema.add({
+  stockNotifyList: {
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    default: [],
+  },
+});
+
 module.exports = mongoose.model('Product', productSchema);

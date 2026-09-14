@@ -49,7 +49,13 @@ const normalizePort = (value) => {
 
 const requestedPort = normalizePort(process.env.PORT) || 5000;
 
-app.use(express.json()); 
+app.use(express.json());
+app.use((req, res, next) => {
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(204);
+  }
+  next();
+});
 
 app.use('/api/analytics', analyticsRoutes);
 app.get('/api/health', (req, res) => {
@@ -81,6 +87,10 @@ app.use('/api/currency', currencyRoutes);
 app.use('/api/featured', featuredRoutes);
 
 app.use('/api/contact', contactRoutes);
+
+// New routes added for v2 features
+const reviewRoutes = require('./routes/reviewRoutes');
+app.use('/api/reviews', reviewRoutes);
 
 const startServer = (port, attemptsLeft = 10) => {
   const server = app.listen(port, () => {

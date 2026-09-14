@@ -12,7 +12,7 @@ const uploadBufferToCloudinary = (buffer, folder = 'smartcart') => {
       { folder },
       (error, result) => {
         if (error) reject(error);
-        else resolve(result);
+        else resolve(result.secure_url);   // ← return just the URL string, not the full result object
       }
     );
     stream.end(buffer);

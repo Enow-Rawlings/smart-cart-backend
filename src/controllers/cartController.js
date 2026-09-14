@@ -12,7 +12,6 @@ const getCart = async (req, res) => {
       cart = await Cart.create({ userId: req.user._id, items: [] });
     }
 
-    // attach live promotion info to each cart item's product, so the frontend can show discounted totals
     const livePromotions = await getLivePromotions();
     const cartObj = cart.toObject();
     cartObj.items = cartObj.items.map((item) => {
